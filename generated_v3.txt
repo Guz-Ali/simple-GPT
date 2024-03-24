@@ -1,0 +1,353 @@
+--2024-03-24 19:08:55--  https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1115394 (1.1M) [text/plain]
+Saving to: ‘input.txt.1’
+
+input.txt.1         100%[===================>]   1.06M  --.-KB/s    in 0.03s   
+
+2024-03-24 19:08:56 (35.1 MB/s) - ‘input.txt.1’ saved [1115394/1115394]
+
+step 0: train loss 4.4955, val loss 4.4959
+step 500: train loss 1.9609, val loss 2.0487
+step 1000: train loss 1.5975, val loss 1.7506
+step 1500: train loss 1.4444, val loss 1.6402
+step 2000: train loss 1.3547, val loss 1.5804
+step 2500: train loss 1.2909, val loss 1.5356
+step 3000: train loss 1.2422, val loss 1.5175
+step 3500: train loss 1.2001, val loss 1.5007
+step 4000: train loss 1.1561, val loss 1.4904
+step 4500: train loss 1.1231, val loss 1.4797
+
+I traitor, I have a king as the elder-a care
+known whether mew'st, nursed and so have came of ail,
+and the reason of breast arry many-day, that gricians succusations,
+Traitives ministressover, perjury, rathtness,
+And the deer those-odies would us' day.
+I think, then feolI do draw teach with ne's, there
+Our anour'd of so blest. You, that you come on,
+I what you wash sworn you have not by,
+Rusesoling of you.
+
+MENENIUS:
+An ill, Tyou sets, see't in a pleasure.
+
+SICINIUS:
+Hail,
+'TI would not you take honour; wrike me,
+And I saw him him.
+
+MERCUTIO:
+'That.
+Men's a priefy of this womage,--
+
+MENENIUS:
+Is denounced, I know you?
+
+First Senal:
+Better,
+Of this Mercius the varlet flower of, and menny,
+Princivioly old time in Rome.
+
+MERCUTIO:
+Nay I would have recommons to yield hance.
+
+VOLUMNIA:
+Some, and you her say, one alike.
+
+CORIOLANUS:
+I will varue you a mine agratity: if it by yours worshipful
+, it meet are provost, like all face to Marques out, so the restise: is
+true, for your worshipfully; and
+the matter of the knaves of this. Let me saw my perhap-strough.
+
+HERMIONE:
+Doth it can fell: our require prescue
+Send all I
+With Romeo not fawns to shoutly then their faires and willow content:
+'Ween we our stood alone where,
+None by the form of that, to worth
+Cupid of sight his mother's life,
+That Cliffords Shall well as the doom of issue.
+
+First Servant:
+Here's soever, yet leve cared; and well not pardon, to
+I have my won with hope of your determ'd-heart's dome!
+Henger now our grief and demands are drunk.
+
+ESCALUS:
+How knoward they are they--believed, then and sto-mored
+That I'll proved and do marry as merry,--so, merry,--
+Why advice and you by misery,-present stay'd,
+Some cruel o'er, an ass's more what I shall seem
+To hople there. Bum, too, though have unluck'd doth,
+Their pace and dully oak deam slow'd;
+How like our dragour's modes with his gwilks?
+Oh Deviling Montague will quit out; and yet dead me did commend
+Bushose all much. Is them deny question of all
+Fell Friar's embalses; then they do dying,
+And from our usin his public battle,
+Or thou shalt make brave inthfully accused
+Was Consul, with a dread sold battle minger
+As thousand apprehend withal, to and went i'
+The king's court: the clotches deop to tears in spudely;
+Or fortunate sundy, or they it is misdeement,
+Prodigary hence from Aubilius anointed
+And given any hath suit ouch my fame broth
+As your good warm: if Claudio can be no jurse
+Seteor to our good o' the gods, and your company
+To armop
+Like to them for flooly open time.
+Hence, Beant party.
+
+Third Citizen:
+But truely, with we lamentable-like and virtuous
+yet desire-angry, and daubtling possible
+Death he feame and egent shall foul here with the tear,
+But one dost any nake.
+
+CORIOLANUS:
+True, sir, ye'r thrend of my prince;
+Do thee.
+Well's my father Corioli:
+So, well, my fellow-fied shortly, hence; and yonder
+they are word.
+
+CORIOLANUS:
+I am stend up my false guard, I would it besumble
+they suppose a men
+Forgive began the gods. Then, though yet but bask.
+
+Messenger:
+But perceived no power books; the death haste
+Intervile thousand fast-fivouring our time to fore-law's
+I courageop, they are off tear no gentleman harm.
+
+ESCALUS:
+Ha! hear me I think.
+
+ANGELO:
+O?
+
+Provost:
+Ay, my lord. Is, and help you, like, any good
+To visatisfy shes; and I sho lose, 'tis take.
+
+ESCALUS:
+How. would, boy like to the which were death. No come goods;
+For while danger. I must be a nurse, for She heart
+Of at story: mask them good for forgive by me.
+
+DUKE VINCENTIO:
+Nothing she shall make me consider.
+
+ESCALUS:
+By her allies of the world.
+
+CAPULET:
+O pitched moname!
+O you!
+
+Provost:
+From mistresses, and here and myself outcutest
+LUght to his sight. Come to you, sure
+Clieve they he very Percutician and so you offend
+As wring his hand whip'd strength is false;
+Harm should things have judge abund;
+Pardon now, sir, fond your entreathes,
+And his part name unstrise, nothing gage,
+No dalumber's dead, you there, sir, which should be mone;
+Wre mere not you are a paying; wife, so deep will
+Will, but to his unsable.
+
+BRUTUS:
+Sovere's a goody of lamb, he shall and disdeed
+for this treason these since whaps the balls,
+Thy other words and Overt at do; therefore,
+Who fivol words since shallow be i' the pall;
+Where be newrowth or cure so, were string weakness,
+And speak very as sat grandst disling.
+Didstrest deed him, so, next, and less front a crows!
+Directious queen, and with the swolf cry of lows,
+All she flowsh and feft of wearings,
+Shalt on gross Northumberland; we stay on that
+Perceived the earth movel of other, as now, for they
+Willing astime it may bold well her required where;
+Suffin her because me by entremity too:
+He was gone a knew'll drum, and south
+Like with other; as those you blush from
+For signifiers and way any a court: seek I
+Have nothing o'er their and lisp'd womb, sens,
+And weep, to resolute's them of such before you'ld sca,
+Or else woman her doth much beauty begars,
+And to fear the joint
+On the thounts.
+
+MONTAGUE:
+From thy antime thy news,
+Her brother lenews in thy war, but In thy pargon;
+But once nothing's preverty body thine
+With thy my soldies by thy asking
+Yea, and I from heart thee.
+If I be well asa form leave to see thee;
+For, I am nothing want, I say, take my light;
+And if I know never a kind to look these open
+Enmonshurity table down. if whom, for I
+Win all swall hopes of her dew I, and saw you
+My high entreaty. Bring the buried?
+
+FRIAR LAURENCE:
+Hopense:
+O, general, my royal I busine, and the Veria's wofance
+Had made the hearts of a fantable.
+
+ROMEO:
+Madam, you have the yearer thinks to desolemn her;
+remotion intented yeal mulh beed to pray.
+
+CATESBY:
+That very sick thou near medness and succor nevy prepare
+Time-advise nose: wilt content time to acquaint noble.
+
+PERDITAN:
+Thou come my castle;
+How long inquired thee to say your soler!
+
+CAPULET:
+I prison my body sold so, alighty son, they are
+use them on.
+What you shalt know, whom wisery! the lap,
+Guad was storm'd; nay, and pray them from off.
+
+PERDITA:
+
+Claudio and such, coming above:
+And my life of up Rome not fear?
+You promised that show yours that I had city
+You are dishonour'd a duke: this armour, like thou wilt,
+What you have your shame of me, writ?
+
+ANTIGONUS:
+How our Catches gently; But purposing by brother,
+Becked the rest of you gives his eye modelies allow;
+If yet go throw jury with use of thy tyranny,
+Whom your strengths, love yourn for lord,
+Were going on this hour, that losop's from a deed law.
+
+MOPSA:
+Well, good I'll winter't; nay with a close,
+A degreen glory siothed, all she have shoutd conter'd
+With nopinion my dash over
+Rome his hand; yet 'twould for his unhappy
+Forsiness.'
+
+DUKE VINCENTIO:
+A palace that saw he, to heaven on him.
+What say you, Romeo, hear be mined prape from his state,
+I enhupon his from royalty ding and nice
+'Twere for bear discourse: you he discharged
+unto you, outs and you are snown up.
+
+AEdile:
+You are convet-might, we never discontent. Good lord!
+
+BALTHASAR BISHOP OF YORK:
+What torchans were deside you, my lord
+Than you find a Mine is not should hearven Mariana,
+A wife were a capable that show'd in thy mee,
+Never which wantHeresoe'er it is a like with
+Cut his her mean to to Guester is certain,
+And no sorrupt whether decky did suppose my
+Through the three-jure of her toward, all I
+At Oxcerds: he pray near no more coutation
+Recomes would ill thou betwait fellow, use afront
+Yet me nother sions; for three night I stood my performity;
+No long but if her:
+Having been within it were you are wings from
+Inger of the north: if you be nevere could
+Show, as any your strong is to eart.
+
+HENRY BOLINGBROKE:
+God paunt for I will mourn with the king of perform
+That I shore, she are the mainto as dead, would
+Be speech'd up'd in my parties 'gainst my wounds.'
+Thus fair youth, it shall I say the
+course, always now, not so counce me en!
+Which with revel was the first; even still'd is subject.
+And to come, not truly hath a man
+A common a bhore out a party; on thick'd a
+Coriolents Pstremble; dembling axaster'd
+To respect.
+
+COMINIUS:
+First.
+
+MENENIUS:
+Nay,'twill no knell all whip my childness to imparable.
+
+First Citizen:
+You happy your revends' household fore, you
+head, she's appoken to by my ointent her wrdness.
+
+COMINIUS:
+Coming be? I hear the purse, couplianty on the tide of all.
+
+MENENIUS:
+No, unhappy them--thating stile the morahing road--
+Jove memberror her content nor more of justs have some spetty.
+
+MONTAGUE:
+With me: we with boy, Prophecy
+Made a peach presume, armed's subject ancourly.
+Who declay is band? Do tell his sheeks?
+
+Shepherd:
+As woever Richmond by God's hungrey, tell's us
+As clat of the queen as slout.
+
+COMINIUS:
+This good man's at memory againstress,
+And so actlean'd is dullingly bidden and strew'd;
+If any other seen so by heer to death,
+that they they'll look'd on the shall and devise
+The flower'd of their fault,
+And bred they them moves themselves
+Upon your grews?
+
+Second Servingman:
+I thou would, and word, that word had content to't.
+
+All:
+And very good nor witney woodless cloud.
+
+FLORIZEL:
+And what: these she was his prisonested at tombly
+With height outdonious remembrance!
+
+COMINIUS:
+Have said you had on to your wind;
+And you say 'tis justice
+When we'll have till you, and with a woman:
+Tescele-joy, andignman that, talk the stead, that things hand
+The proved yot foe-young chances
+Wherefore your purpose withon you 'gains,'
+And 'scarted and lempets. Come on, if I be you do quite him out
+Till we must be taked with them defign to be king;
+Help and fly! slande so thinks his deen.
+
+JULIET:
+His country that will I more that would,
+Have not stock'd is drum; and the sea somes
+To-minike charging majesty; and gives cloudy with my
+But servery in thy holy days,
+That an unhappy half sit in their like,
+And fortune lords, that slay all aloof,
+As thy life and river o'er the dembned wild,
+With a slady's whing in botter's throm prosper so.
+Let was now the truth.
+Hadst thou unhop'state that you loved?
+So, like them sad wonders.
+
+Third Servingman:
+The we
