@@ -1,0 +1,184 @@
+--2024-03-24 17:54:52--  https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1115394 (1.1M) [text/plain]
+Saving to: ‘input.txt’
+
+input.txt           100%[===================>]   1.06M  --.-KB/s    in 0.04s   
+
+2024-03-24 17:54:52 (29.6 MB/s) - ‘input.txt’ saved [1115394/1115394]
+
+step 0: train loss 4.4946, val loss 4.4951
+step 500: train loss 2.1220, val loss 2.1743
+step 1000: train loss 1.6857, val loss 1.8239
+step 1500: train loss 1.5018, val loss 1.6847
+step 2000: train loss 1.3932, val loss 1.6059
+step 2500: train loss 1.3218, val loss 1.5553
+step 3000: train loss 1.2687, val loss 1.5277
+step 3500: train loss 1.2228, val loss 1.5055
+step 4000: train loss 1.1782, val loss 1.5031
+step 4500: train loss 1.1458, val loss 1.4964
+
+I traitor, I have a king and speech too.
+
+First Watchman:
+I would your grace, God die came of aidly tongue;
+And wido break to waim the less of the city.
+
+Provost:
+
+Which, if Cythiop all mellant with promise companing.
+
+SLY:
+Art a store to strength upon the senator.
+
+ANGELO:
+I refuse you but ne'er we?
+
+COuriolanus
+To our pleasure is that you.
+
+MISTRESS OVERD:
+Being presence in gainst, and I
+sentend post it.
+
+MENENIUS:
+An i' ht you selfh us:
+I'ld not hear night, Marcius in the I have will
+The taph and great hard not as true;
+And his prever cravest: he will say'd rubs;
+We happing it bawardly his lots,
+Ton way as much his captain suffy as a bar.
+
+CORIOLANUS:
+Nay, and you love, I'll plead not him; if plage they
+To fournful granted with your men hoaring; whose evering
+Than my satisfy. Show should you have a simpleasure down.
+
+Second Citizen:
+And you a mysemage, give you to speak; it foot in
+Which ments thereof 'no lief, in face of us.
+
+ANGELO:
+Be there is so I will:
+Whose nail worth I may in my misdous; letter
+The feet on't--take that I was a bawdy--time denote,
+My creet-plittle seven and ree thee me food
+Set thou speak me my proud well-butch, alse!
+No sleep, I dream in my owfed with kile.
+And on my brother, keep and for my gage,
+I'll I fly, to we thus here. But what I must come you?
+
+HENRY BOLINGBROKE:
+Romeo!
+
+HENRY BOLINGBROKE:
+Royand face?
+
+BUCKINGHAM:
+My good colour cause; and well I lieve,
+Sust like anointed in condict to your deign,
+Where were imbusing from Parisage Very,--
+Once on my faulchion.
+
+POLIXENES:
+Do you well: most unsin some that withdraws.
+
+RICHARD:
+I'll prove her into Clarence, that you,
+Yet summer bred, collaim accest him to precessistance,
+So stay you are, as this, and swingelo be loved,
+Some almother conferated, though have uply man.
+
+RISCA:
+You shalt to me, good night; or as therein you,
+Having his that your carnawl. Her heavens;
+But is a curse person that they high foul did commends
+By yonder and they would do how his virtain;
+When I have toem
+For of they they do dying, at excold,
+But what is the duke's night! The Tybalt's death,
+And, for I am a slave.
+
+ROMEO:
+Nay, 'tis betreme before me teach. Thou hast prison!
+I knot thou, have't him good with the blood to me?
+What, opind this, and whoever do fortA
+Indelling he it Romeo, demised me not my award
+In her shoves, cry noble morning:
+Say 'Verily, and from them forth
+By shame! 'twill so dispose himself;
+'That is nursed feeming of his oppose: 'tis too,
+whom it will beguard, they will-play the field
+And fo thy star'd Buckinghame.
+
+Third Citizen:
+Either in the summer to his planger good
+from the seldom on a my boat, which is my son man
+having the my busings o' the stocks' harm.
+
+Messenger:
+Thou waster I myself to be to satisfy will thy gelt.
+
+Third Servingman:
+Hence he will promised me; as you do so, go;
+Let you scarce the monstan of this custom's visitation
+doon; or is Claudence, who you gave dong brief
+the thirne and of thee elspesty and great conveyance
+to great?
+
+First Senator:
+You are for else; my lord, cousin!
+Now, take both cheap death his face, that it you sound,
+as veryity will in my these faces
+In you. Heir of tremble fount! I have you envy
+His fault: goodness. But I thunk, for my first? I;
+But will myself to subject!
+
+DUCHESS OF YORK:
+Nor my brother; therefore, even that Tybalt,
+And, the almost on the grain's trunk
+To our which weep deak and, crast for sullen pilgre in justly.
+I will not,--
+I think thou of thy stayford, every tread'st us;
+Forbids men's poaceSits for another is but
+Thou art me an unworn at our ooth, wholes
+Without be the great band--
+Or, what I do promise you flusit-geing Leisure
+his son dres-salte ledge for uterpose child.
+What is he within him? The field but from me;
+And he's captany with him? But a subject of the speed,
+Then fall asside you; and he you thinks, sir;
+Your even thou
+hath madness not speak me, nor happy in his part is's name,
+self--besign'd, I beseech young, as you are
+grossing on, and for the matters, make me side: party,
+paying; wife, sir, is his foul, if
+those means, be sthould neversal, for sweet, imagine hither timage.
+
+HENRY BOLINGBROKE:
+But with us!
+My joint is band myself to my displease;
+I that you supply mild, his honour's knife,
+That own swife is pallant requiveness;
+Nay, and those we are not welcomened men:
+'What may doth there doth help with sun
+The deed how sween leen and tears sun have:
+Is This little quench but with the son,
+Grief-belt upon the pefference before the crow;
+And I'll rewards, even forth pause mest of me
+Matter Adaintius be my hoir line,
+And very now, for a party sweet, will stom,
+As I seem the sw fully of what madness to me
+As my meanrel, and her, our begg'd nexer,--
+All therest, may I mean the gods or Rome,
+Against blushfed as I would show me
+A way and as our rustemant to me spear o'
+
+Third-sain; but, I I cry to my chiefer,
+But I know for live; Isabel, forth.
+
+ROMEO:
+Holy man! what she should be resolved I'll indeed
+No founded in my most gracious lord, while I must my answer
