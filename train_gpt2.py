@@ -212,8 +212,8 @@ class DataLoaderLite:
 # ------------------------
 import time
 
-device = 'cuda' if torch.cuda.is_available()  else 'cpu'
-print(f"using device: {device}")
+device_type = 'cuda' if torch.cuda.is_available()  else 'cpu'
+print(f"using device: {device_type}")
 
 torch.manual_seed(2331)
 if torch.cuda.is_available():
@@ -228,16 +228,17 @@ torch.set_float32_matmul_precision('high')
 
 # get logits
 model = GPT(GPTConfig())
-model.to(device) 
+model.to(device_type) 
 
 # optimization
 optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
 for i in range(50):
     t0 = time.time()
     x, y = train_loader.next_batch()
-    x, y = x.to(device), y.to(device)
+    x, y = x.to(device_type), y.to(device_type)
     optimizer.zero_grad()
-    logits, loss = model(x, y)
+    with torch.autocast(device_type=device_type, dtype=torch.bfloat16):
+        logits, loss = model(x, y)
     loss.backward()
     optimizer.step()
     torch.cuda.synchronize()
@@ -257,7 +258,7 @@ enc = tiktoken.get_encoding('gpt2')
 tokens = enc.encode("I am a language model that")
 tokens = torch.tensor(tokens, dtype=torch.long)
 tokens = tokens.unsqueeze(0).repeat(num_return_sequences, 1)
-x = tokens.to(device) # utilizes GPU if it exists
+x = tokens.to(device_type) # utilizes GPU if it exists
 
 torch.manual_seed(42)
 torch.cuda.manual_seed(42)
