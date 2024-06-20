@@ -163,7 +163,7 @@ tokens = enc.encode(text)
 B, T = 4, 32
 buf = torch.tensor(tokens[:B*T+ 1])
 x = buf[:-1].view(B, T)
-y = buf[1].view(B, T)
+y = buf[1:].view(B, T)
 
 num_return_sequences = 5
 max_length = 30
