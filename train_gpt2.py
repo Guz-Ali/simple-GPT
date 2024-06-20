@@ -194,7 +194,7 @@ class DataLoaderLite:
         tokens = enc.encode(text)
         self.tokens = torch.tensor(tokens)
         print(f"loaded {len(self.tokens)} tokens")
-        print(f"1 epoch = {len(self.tokens) // (B * T)}")
+        print(f"1 epoch = {len(self.tokens) // (B * T)} batches")
 
         #state 
         self.current_position = 0
@@ -210,6 +210,8 @@ class DataLoaderLite:
         return x, y
 
 # ------------------------
+import time
+
 device = 'cuda' if torch.cuda.is_available()  else 'cpu'
 print(f"using device: {device}")
 
@@ -217,7 +219,9 @@ torch.manual_seed(2331)
 if torch.cuda.is_available():
     torch.cuda.manual_seed(2331)
 
-train_loader = DataLoaderLite(B=4, T=32)
+# use B=16, T=1024 when enough VRAM, ie. while using A100s.
+# training on T4 GPU for the time being. 
+train_loader = DataLoaderLite(B=4, T=512)
 
 # get logits
 model = GPT(GPTConfig())
@@ -226,13 +230,17 @@ model.to(device)
 # optimization
 optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
 for i in range(50):
+    t0 = time.time()
     x, y = train_loader.next_batch()
     x, y = x.to(device), y.to(device)
     optimizer.zero_grad()
     logits, loss = model(x, y)
     loss.backward()
     optimizer.step()
-    print(f"step {i}, loss: {loss.item()}")
+    torch.cuda.synchronize()
+    t1 = time.time()
+    dt = (t1 - t0)*1000
+    print(f"step {i}, loss: {loss.item()}, dt: {dt:.2f}ms")
 
 import sys; sys.exit(0)
 
