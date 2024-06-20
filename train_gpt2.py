@@ -84,6 +84,9 @@ class GPT(nn.Module):
         ))
         self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
 
+        # weight sharing scheme
+        self.transformer.wte.weight = self.lm_head.weight
+
     def forward(self, idx, targets=None):
         B, T = idx.size()
         assert T <= self.config.block_size, f"cannot forward seq of len {T}"
