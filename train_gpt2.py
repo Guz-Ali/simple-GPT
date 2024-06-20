@@ -58,8 +58,8 @@ class Block(nn.Module):
         self.mlp = MLP(config)
 
     def forward(self, x):
-        x += self.attn(self.ln_1(x))
-        x += self.mlp(self.ln_2(x))
+        x = x + self.attn(self.ln_1(x))
+        x = x + self.mlp(self.ln_2(x))
         return x
 
 @dataclass
@@ -165,21 +165,27 @@ text = text[:1000]
 tokens = enc.encode(text)
 B, T = 4, 32
 buf = torch.tensor(tokens[:B*T+ 1])
+buf = buf.to(device)
 x = buf[:-1].view(B, T)
 y = buf[1:].view(B, T)
 
 model = GPT(GPTConfig())
-model.to(device) # utilizes GPU if it exists
-logits, loss = model(x, y)
+model.to(device) 
 
-print(loss)
+optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
+for i in range(50):
+    optimizer.zero_grad()
+    logits, loss = model(x, y)
+    loss.backward()
+    optimizer.step()
+    print(f"step {i}, loss: {loss.item()}")
+
 import sys; sys.exit(0)
 
-
+# prefix tokens to generate after
 model.eval()
 num_return_sequences = 5
 max_length = 30
-# prefix tokens to generate after
 import tiktoken
 enc = tiktoken.get_encoding('gpt2')
 tokens = enc.encode("I am a language model that")
