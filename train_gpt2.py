@@ -84,7 +84,7 @@ class GPT(nn.Module):
         ))
         self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
 
-    def forward(self, idx):
+    def forward(self, idx, targets=None):
         B, T = idx.size()
         assert T <= self.config.block_size, f"cannot forward seq of len {T}"
 
@@ -98,7 +98,10 @@ class GPT(nn.Module):
 
         x = self.transformer.ln_f(x)
         logits = self.lm_head(x)
-        return logits
+        loss = None
+        if targets is not None:
+            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1))
+        return logits, loss
 
     @classmethod
     def from_pretrained(cls, model_type):
@@ -165,18 +168,17 @@ buf = torch.tensor(tokens[:B*T+ 1])
 x = buf[:-1].view(B, T)
 y = buf[1:].view(B, T)
 
-num_return_sequences = 5
-max_length = 30
-
-# model = GPT.from_pretrained('gpt2')
 model = GPT(GPTConfig())
-model.eval()
 model.to(device) # utilizes GPU if it exists
+logits, loss = model(x, y)
 
-logits = model(x)
-print(logits.shape)
+print(loss)
 import sys; sys.exit(0)
 
+
+model.eval()
+num_return_sequences = 5
+max_length = 30
 # prefix tokens to generate after
 import tiktoken
 enc = tiktoken.get_encoding('gpt2')
