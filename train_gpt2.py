@@ -157,6 +157,7 @@ class GPT(nn.Module):
 device = 'cuda' if torch.cuda.is_available()  else 'cpu'
 print(f"using device: {device}")
 
+# !pip install tiktoken # if running on Google Colab
 import tiktoken
 enc = tiktoken.get_encoding('gpt2')
 with open('input.txt', 'r') as f:
