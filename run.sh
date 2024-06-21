@@ -3,6 +3,10 @@ if [[ $1 -eq 0 ]] ; then
     exit 1
 fi
 
+pip install tiktoken
+pip install datasets
+pip install tqdm
+
 python fineweb.py
 ls edu_fineweb10B | wc -l
 torchrun --standalone --nproc_per_node=$1 train_gpt2.py
