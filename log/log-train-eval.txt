@@ -1,0 +1,7 @@
+0 hella 0.2436
+0 train 11.022413
+1 train 10.090674
+2 train 9.590351
+3 train 9.150818
+4 hella 0.2540
+4 train 8.798421

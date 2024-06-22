@@ -340,7 +340,7 @@ enc = tiktoken.get_encoding("gpt2")
 # training on T4 GPU for the time being.
 # do gradient accumulation to accommodate very large batch size (total)
 total_batch_size = 524288 # 2**19, ~0.5M number of tokens
-B = 32
+B = 16
 T = 1024
 assert total_batch_size % (B * T * ddp_world_size) == 0, "total_batch_size must be divisible by B * T * ddp_world_size"
 grad_accum_steps = total_batch_size // (B * T * ddp_world_size)
@@ -366,8 +366,8 @@ raw_model = model.module if ddp else model
 max_lr = 6e-4
 min_lr = max_lr * 0.1
 # based on fineweb and gpt 3 hyperparameter
-warmup_steps = 3 # 715
-max_steps = 10 #19073
+warmup_steps = 715
+max_steps = 19073
 def get_lr(it):
     # warmup region, use large learning rates
     if it < warmup_steps:
@@ -397,7 +397,7 @@ for step in range(max_steps):
     last_step = (step == max_steps - 1)
 
     # once in a while evaluate validation loss
-    if step % 4 == 0 or last_step: # 250
+    if step % 250 == 0 or last_step:
         model.eval()
         val_loader.reset()
         with torch.no_grad():
@@ -416,7 +416,7 @@ for step in range(max_steps):
             print(f"validation loss: {val_loss_accum.item():.4f}")
 
     # once in a while evaluate hellaswag
-    if (step % 4 == 0 or last_step) and (not use_compile): # 250
+    if (step % 250 == 0 or last_step) and (not use_compile):
         num_correct_norm = 0
         num_total = 0
         for i, example in enumerate(iterate_examples("val")):
@@ -446,11 +446,11 @@ for step in range(max_steps):
                 f.write(f"{step} hella {acc_norm:.4f}\n")
 
     # once in a while generate text
-    if ((step > 0 and step % 4 == 0) or last_step) and (not use_compile): # 250
+    if ((step > 0 and step % 250 == 0) or last_step) and (not use_compile):
         model.eval()
         num_return_sequences = 4
         max_length = 32
-        tokens = enc.encode("I am a language model that")
+        tokens = enc.encode("A language model is")
         tokens = torch.tensor(tokens, dtype=torch.long)
         tokens = tokens.unsqueeze(0).repeat(num_return_sequences, 1)
         xgen = tokens.to(device)
@@ -465,7 +465,7 @@ for step in range(max_steps):
                 topk_probs, topk_indices = torch.topk(probs, 50, dim=-1)
                 ix = torch.multinomial(topk_probs, 1, generator=sample_rng)
                 xcol = torch.gather(topk_indices, -1, ix)
-                x = torch.cat((xgen, xcol), dim=1)
+                xgen = torch.cat((xgen, xcol), dim=1)
         for i in range(num_return_sequences):
             tokens = xgen[i, :max_length].tolist()
             decoded = enc.decode(tokens)
@@ -478,12 +478,12 @@ for step in range(max_steps):
     for micro_step in range(grad_accum_steps):
         x, y = train_loader.next_batch()
         x, y = x.to(device), y.to(device)
+        if ddp:
+            model.require_backward_grad_sync = (micro_step == grad_accum_steps -1)
         with torch.autocast(device_type=device_type, dtype=torch.bfloat16):
             logits, loss = model(x, y)
         loss = loss / grad_accum_steps
         loss_accum += loss.detach()
-        if ddp:
-            model.require_backward_grad_sync = (micro_step == grad_accum_steps -1)
         loss.backward()
     if ddp:
         dist.all_reduce(loss_accum, op=dist.ReduceOp.AVG)
