@@ -340,7 +340,7 @@ enc = tiktoken.get_encoding("gpt2")
 # training on T4 GPU for the time being.
 # do gradient accumulation to accommodate very large batch size (total)
 total_batch_size = 524288 # 2**19, ~0.5M number of tokens
-B = 16
+B = 32
 T = 1024
 assert total_batch_size % (B * T * ddp_world_size) == 0, "total_batch_size must be divisible by B * T * ddp_world_size"
 grad_accum_steps = total_batch_size // (B * T * ddp_world_size)
@@ -397,7 +397,7 @@ for step in range(max_steps):
     last_step = (step == max_steps - 1)
 
     # once in a while evaluate validation loss
-    if step % 2 == 0 or last_step: # 250
+    if step % 4 == 0 or last_step: # 250
         model.eval()
         val_loader.reset()
         with torch.no_grad():
@@ -416,7 +416,7 @@ for step in range(max_steps):
             print(f"validation loss: {val_loss_accum.item():.4f}")
 
     # once in a while evaluate hellaswag
-    if (step % 2 == 0 or last_step) and (not use_compile): # 250
+    if (step % 4 == 0 or last_step) and (not use_compile): # 250
         num_correct_norm = 0
         num_total = 0
         for i, example in enumerate(iterate_examples("val")):
@@ -446,7 +446,7 @@ for step in range(max_steps):
                 f.write(f"{step} hella {acc_norm:.4f}\n")
 
     # once in a while generate text
-    if ((step > 0 and step % 2 == 0) or last_step) and (not use_compile): # 250
+    if ((step > 0 and step % 4 == 0) or last_step) and (not use_compile): # 250
         model.eval()
         num_return_sequences = 4
         max_length = 32
@@ -458,13 +458,14 @@ for step in range(max_steps):
         sample_rng.manual_seed(42 + ddp_rank)
         while xgen.size(1) < max_length:
             with torch.no_grad():
-                logits, loss = model(xgen)
+                with torch.autocast(device_type=device_type, dtype=torch.bfloat16):
+                    logits, loss = model(xgen)
                 logits = logits[:, -1, :]
                 probs = F.softmax(logits, dim=-1)
                 topk_probs, topk_indices = torch.topk(probs, 50, dim=-1)
                 ix = torch.multinomial(topk_probs, 1, generator=sample_rng)
                 xcol = torch.gather(topk_indices, -1, ix)
-                x = torch.cat((x, xcol), dim=1)
+                x = torch.cat((xgen, xcol), dim=1)
         for i in range(num_return_sequences):
             tokens = xgen[i, :max_length].tolist()
             decoded = enc.decode(tokens)
