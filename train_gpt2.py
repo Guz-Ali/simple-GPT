@@ -283,6 +283,15 @@ def get_most_likely_row(tokens, mask, logits):
     pred_norm = avg_loss.argmin().item()
     return pred_norm
 
+# ------------------------
+# save and load finetuned model.
+def save_finetuned_model(model, optimizer, path):
+    state = {'model': model.state_dict(), 'optimizer': optimizer.state_dict()}
+    torch.save(state, path)
+
+def load_finetuned_model(model, optimizer, path):
+    model.load_state_dict(torch.load(path)['model'])
+    optimizer.load_state_dict(torch.load(path)['optimizer'])
 
 # ------------------------
 # simple launch:
@@ -492,6 +501,9 @@ for step in range(max_steps):
         print(f"step {step:5d} | loss: {loss_accum.item():.6f} | lr: {lr:.4e} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
         with open(log_file, 'a') as f:
             f.write(f"{step} train {loss_accum.item():.6f}\n")
+
+if master_process:
+    save_finetuned_model(model, optimizer, "gpt2-finetuned.pth")
 
 if ddp:
     destroy_process_group()
