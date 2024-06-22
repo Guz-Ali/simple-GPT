@@ -388,7 +388,7 @@ optimizer = raw_model.configure_optimizers(weight_decay=0.1, learning_rate=6e-4,
 # log dir for checkpoints
 log_dir = "log"
 os.makedirs(log_dir, exist_ok=True)
-log_file = os.path.join(log_dir, f"log.txt")
+log_file = os.path.join(log_dir, f"log-train-eval.txt")
 with open(log_file, "w") as f:
     pass
 
