@@ -6,6 +6,7 @@ from dataclasses import dataclass
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+from hellaswag import render_example, iterate_examples
 
 class CausalSelfAttention(nn.Module):
     
@@ -258,6 +259,30 @@ class DataLoaderLite:
             self.tokens = load_tokens(self.shards[self.current_shard])
             self.current_position = self.B * self.T * self.process_rank
         return x, y
+    
+# ------------------------
+# HellaSwag eval helper func
+# taken as is from tutorial.
+
+def get_most_likely_row(tokens, mask, logits):
+    # evaluate the autoregressive loss at all positions
+    shift_logits = (logits[..., :-1, :]).contiguous()
+    shift_tokens = (tokens[..., 1:]).contiguous()
+    flat_shift_logits = shift_logits.view(-1, shift_logits.size(-1))
+    flat_shift_tokens = shift_tokens.view(-1)
+    shift_losses = F.cross_entropy(flat_shift_logits, flat_shift_tokens, reduction='none')
+    shift_losses = shift_losses.view(tokens.size(0), -1)
+    # now get the average loss just for the completion region (where mask == 1), in each row
+    shift_mask = (mask[..., 1:]).contiguous() # we must shift mask, so we start at the last prompt token
+    masked_shift_losses = shift_losses * shift_mask
+    # sum and divide by the number of 1s in the mask
+    sum_loss = masked_shift_losses.sum(dim=1)
+    avg_loss = sum_loss / shift_mask.sum(dim=1)
+    # now we have a loss for each of the 4 completions
+    # the one with the lowest loss should be the most likely
+    pred_norm = avg_loss.argmin().item()
+    return pred_norm
+
 
 # ------------------------
 # simple launch:
@@ -299,6 +324,8 @@ device_type = "cuda" if device.startswith("cuda") else "cpu"
 torch.manual_seed(2331)
 if torch.cuda.is_available():
     torch.cuda.manual_seed(2331)
+
+enc = tiktoken.get_encoding("gpt2")
 
 # use B=16, T=1024 when enough VRAM, ie. while using A100s.
 # training on T4 GPU for the time being.
@@ -364,7 +391,7 @@ for step in range(max_steps):
     if step % 250 == 0 or last_step:
         model.eval()
         val_loader.reset()
-        with torch.no_grad()
+        with torch.no_grad():
             val_loss_accum = 0.0
             val_loss_steps = 20
             for _ in range(val_loss_steps):
@@ -418,7 +445,7 @@ for step in range(max_steps):
         tokens = torch.tensor(tokens, dtype=torch.long)
         tokens = tokens.unsqueeze(0).repeat(num_return_sequences, 1)
         xgen = tokens.to(device)
-        sample_rnp = torch.Generator(device=device)
+        sample_rng = torch.Generator(device=device)
         sample_rng.manual_seed(42 + ddp_rank)
         while xgen.size(1) < max_length:
             with torch.no_grad():
