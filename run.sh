@@ -6,6 +6,7 @@ fi
 pip install tiktoken
 pip install datasets
 pip install tqdm
+pip install transformers
 
 python fineweb.py
 echo "number of shards:"
