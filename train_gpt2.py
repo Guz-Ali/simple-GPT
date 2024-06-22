@@ -366,8 +366,8 @@ raw_model = model.module if ddp else model
 max_lr = 6e-4
 min_lr = max_lr * 0.1
 # based on fineweb and gpt 3 hyperparameter
-warmup_steps = 715
-max_steps = 19073
+warmup_steps = 3 # 715
+max_steps = 10 #19073
 def get_lr(it):
     # warmup region, use large learning rates
     if it < warmup_steps:
@@ -397,7 +397,7 @@ for step in range(max_steps):
     last_step = (step == max_steps - 1)
 
     # once in a while evaluate validation loss
-    if step % 250 == 0 or last_step:
+    if step % 2 == 0 or last_step: # 250
         model.eval()
         val_loader.reset()
         with torch.no_grad():
@@ -416,7 +416,7 @@ for step in range(max_steps):
             print(f"validation loss: {val_loss_accum.item():.4f}")
 
     # once in a while evaluate hellaswag
-    if (step % 250 == 0 or last_step) and (not use_compile):
+    if (step % 2 == 0 or last_step) and (not use_compile): # 250
         num_correct_norm = 0
         num_total = 0
         for i, example in enumerate(iterate_examples("val")):
@@ -446,7 +446,7 @@ for step in range(max_steps):
                 f.write(f"{step} hella {acc_norm:.4f}\n")
 
     # once in a while generate text
-    if ((step > 0 and step % 250 == 0) or last_step) and (not use_compile):
+    if ((step > 0 and step % 2 == 0) or last_step) and (not use_compile): # 250
         model.eval()
         num_return_sequences = 4
         max_length = 32
