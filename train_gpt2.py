@@ -30,10 +30,6 @@ class CausalSelfAttention(nn.Module):
         q = q.view(B, T, self.n_head, C // self.n_head).transpose(1, 2)
         v = v.view(B, T, self.n_head, C // self.n_head).transpose(1, 2)
 
-        # att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
-        # att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
-        # att = F.softmax(att, dim=-1)
-        # y = att @ v
         y = F.scaled_dot_product_attention(q, k, v, is_causal=True)
 
         y = y.transpose(1,2).contiguous().view(B, T, C)
@@ -225,12 +221,6 @@ class DataLoaderLite:
         self.num_processes = num_processes
         assert split in {'train', 'val'}
 
-        # with open('input.txt', 'r') as f:
-        #     text = f.read()
-        # enc = tiktoken.get_encoding('gpt2')
-        # tokens = enc.encode(text)
-        # self.tokens = torch.tensor(tokens)
-        # print(f"loaded {len(self.tokens)} tokens")
         data_root = "edu_fineweb10B"
         shards = os.listdir(data_root)
         shards = [s for s in shards if split in s]
