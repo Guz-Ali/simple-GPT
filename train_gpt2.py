@@ -379,6 +379,9 @@ optimizer = raw_model.configure_optimizers(weight_decay=0.1, learning_rate=6e-4,
 log_dir = "log"
 os.makedirs(log_dir, exist_ok=True)
 log_file = os.path.join(log_dir, f"log-train-eval.txt")
+gen_file = os.path.join(log_dir, f"log-generated-texts.txt")
+with open(log_file, "w") as f:
+    pass
 with open(log_file, "w") as f:
     pass
 
@@ -473,6 +476,8 @@ for step in range(max_steps):
             tokens = xgen[i, :max_length].tolist()
             decoded = enc.decode(tokens)
             print(f"rank {ddp_rank} sample {i}: {decoded}")
+            with open(gen_file, 'a') as f:
+                f.write(f"step {step} rank {ddp_rank} sample {i}: {decoded}")
 
     # do one step of optimization / training
     model.train()
