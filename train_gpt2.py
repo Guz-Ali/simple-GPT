@@ -382,7 +382,7 @@ log_file = os.path.join(log_dir, f"log-train-eval.txt")
 gen_file = os.path.join(log_dir, f"log-generated-texts.txt")
 with open(log_file, "w") as f:
     pass
-with open(log_file, "w") as f:
+with open(gen_file, "w") as f:
     pass
 
 for step in range(max_steps):
