@@ -414,6 +414,19 @@ for step in range(max_steps):
             dist.all_reduce(val_loss_accum, op=dist.ReduceOp.AVG)
         if master_process:
             print(f"validation loss: {val_loss_accum.item():.4f}")
+            with open(log_file, "a") as f:
+                f.write(f"{step} val {val_loss_accum.item():.4f}\n")
+            if step > 0 and (step % 5000 == 0 or last_step):
+                # write model checkpoints & final model
+                checkpoint_path = os.path.join(log_dir, f"model_{step:05d}.pth")
+                checkpoint = {
+                    'model': raw_model.state_dict(),
+                    'config': raw_model.config,
+                    'step': step,
+                    'val_loss': val_loss_accum.item(),
+                    'optimizer': optimizer.state_dict()
+                }
+                torch.save(checkpoint, checkpoint_path)
 
     # once in a while evaluate hellaswag
     if (step % 250 == 0 or last_step) and (not use_compile):
@@ -502,9 +515,6 @@ for step in range(max_steps):
         print(f"step {step:5d} | loss: {loss_accum.item():.6f} | lr: {lr:.4e} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
         with open(log_file, 'a') as f:
             f.write(f"{step} train {loss_accum.item():.6f}\n")
-
-if master_process:
-    save_finetuned_model(model, optimizer, "gpt2-finetuned.pth")
 
 if ddp:
     destroy_process_group()
